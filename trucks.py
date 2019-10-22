@@ -2,7 +2,7 @@ class Incoming_trucks:
     def __init__(self, clothing, electronics, automotive, home_kitchen, 
     sports, tools, toys_games):  
         self.clothing = clothing
-        self. electronics = electronics
+        self.electronics = electronics
         self.automotive = automotive
         self.home_kitchen = home_kitchen
         self.sports = sports
