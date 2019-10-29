@@ -12,8 +12,23 @@ Order of operations
 import sys
 from itertools import product
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QBasicTimer
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 #API
+
+class PicButton(QAbstractButton):
+    def __init__(self, pixmap, parent=None):
+        super(PicButton, self).__init__(parent)
+        self.pixmap = pixmap
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.drawPixmap(event.rect(), self.pixmap)
+
+    def sizeHint(self):
+        return self.pixmap.size()
+
+
 class Widget(QWidget):
     def __init__(self, parent=None):
         super(Widget, self).__init__(parent=parent)
@@ -70,16 +85,13 @@ class Widget(QWidget):
         x = (0, 1, 2)
 
         coords = list(product(x, x))
-        coords.append((3, 1))
 
         for coord in coords:
             x, y = coord
-            button = QPushButton(self.numpadFrame)
-            button.setFixedSize(60, 60)
-            button.setText(str(x + 3 * y + 1))
+            button = PicButton(QPixmap('/home/robuntu/Chen/ICS4U-Classwork/amazon-fc-assignment-dark-mode/images/exit.png'), self.numpadFrame)
+            button.setFixedSize(150, 150)
             button.setStyleSheet("background-color: white;")
             self.gridLayout.addWidget(button, x, y)
-        button.setText("0")
 
         self.verticalLayout.addLayout(self.gridLayout)
         spacerItem2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
