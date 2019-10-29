@@ -30,17 +30,15 @@ class Widget(QWidget):
         self.verticalLayout = QVBoxLayout(self.rightFrame)
         self.gridLayout = QGridLayout()
 
-        btns = {(0, 0): "start", (0, 2): "Stop",
-                (1, 0): "Speed-", (1, 1): "1", (1, 2): "Speed+",
-                (2, 0): "Pieces", (2, 1): "0", (2, 2): "Clear",
-                (3, 0): "Length", (3, 1): "0", (3, 2): "Clear",
-                (4, 1): "Manual",
-                (5, 0): "Cut", (5, 1): "Feed", (5, 2): "Clear"}
-        for pos, name in btns.items():
-            x, y = pos
-            btn = QPushButton(self.rightFrame)
-            btn.setText(name)
-            self.gridLayout.addWidget(btn, x, y)
+        categories = QComboBox(self.rightFrame)
+        categories.addItem("Clothing")
+        categories.addItem("Electronics")
+        categories.addItem("Automoive")
+        categories.addItem("Home/Kitchen")
+        categories.addItem("Sports")
+        categories.addItem("Tools")
+        categories.addItem("Toys/Games")
+        self.gridLayout.addWidget(categories, 0, 0)
 
         self.verticalLayout.addLayout(self.gridLayout)
         self.principalLayout.addWidget(self.rightFrame)
@@ -57,7 +55,7 @@ class Widget(QWidget):
         self.verticalLayoutR.addWidget(self.exitFrame)
 
         self.numpadFrame = QFrame(self)
-        self.numpadFrame.setStyleSheet("background-color: yellow;")
+        self.numpadFrame.setStyleSheet("background-color: black;")
         self.numpadFrame.setFrameShape(QFrame.StyledPanel)
         self.numpadFrame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.numpadFrame)
