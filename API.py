@@ -48,7 +48,7 @@ class Widget(QWidget):
         categories = QComboBox(self.rightFrame)
         categories.addItem("Clothing")
         categories.addItem("Electronics")
-        categories.addItem("Automoive")
+        categories.addItem("Automotive")
         categories.addItem("Home/Kitchen")
         categories.addItem("Sports")
         categories.addItem("Tools")
@@ -86,12 +86,15 @@ class Widget(QWidget):
 
         coords = list(product(x, x))
 
-        for coord in coords:
-            x, y = coord
-            button = PicButton(QPixmap('/home/robuntu/Chen/ICS4U-Classwork/amazon-fc-assignment-dark-mode/images/exit.png'), self.numpadFrame)
+        for i in coords:
+            x, y = i
+            button = QPushButton(QIcon('/home/robuntu/Chen/ICS4U-Classwork/amazon-fc-assignment-dark-mode/images/exit.png'), 'Pepega', self.numpadFrame)
             button.setFixedSize(150, 150)
             button.setStyleSheet("background-color: white;")
             self.gridLayout.addWidget(button, x, y)
+        
+        
+        
 
         self.verticalLayout.addLayout(self.gridLayout)
         spacerItem2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -113,6 +116,8 @@ class Widget(QWidget):
         self.horizontalLayout.addWidget(self.adminBtn)
         self.verticalLayoutR.addWidget(self.adminFrame)
         self.principalLayout.addLayout(self.verticalLayoutR)
+
+
 
 
 #Taking items
