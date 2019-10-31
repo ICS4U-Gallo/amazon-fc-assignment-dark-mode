@@ -66,6 +66,7 @@ class Widget(QWidget):
         self.exitFrame.setFrameShadow(QFrame.Raised)
         self.exitverticalLayout = QVBoxLayout(self.exitFrame)
         self.exitBtn = QPushButton("Exit", self.exitFrame)
+        self.exit_time()
         self.exitverticalLayout.addWidget(self.exitBtn)
         self.verticalLayoutR.addWidget(self.exitFrame)
 
@@ -85,10 +86,11 @@ class Widget(QWidget):
         x = (0, 1, 2)
 
         coords = list(product(x, x))
+        self.fillerword = ""
 
         for i in coords:
             x, y = i
-            button = QPushButton(QIcon('/home/robuntu/Chen/ICS4U-Classwork/amazon-fc-assignment-dark-mode/images/exit.png'), 'Pepega', self.numpadFrame)
+            button = QPushButton(self.fillerword, self.numpadFrame)
             button.setFixedSize(150, 150)
             button.setStyleSheet("background-color: white;")
             self.gridLayout.addWidget(button, x, y)
@@ -116,6 +118,18 @@ class Widget(QWidget):
         self.horizontalLayout.addWidget(self.adminBtn)
         self.verticalLayoutR.addWidget(self.adminFrame)
         self.principalLayout.addLayout(self.verticalLayoutR)
+
+    def changing_selection(self, select):
+        with open("database_storage.pickle", "rb") as f:
+            database = pickle.load(f)
+        for i in range(1):
+            self.fillerword = database[select][i]
+
+
+
+    def exit_time(self):
+        self.exitBtn.clicked.connect(QApplication.instance().quit)
+
 
 
 

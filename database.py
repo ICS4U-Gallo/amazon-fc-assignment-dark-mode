@@ -33,6 +33,7 @@ ruck = Incoming_trucks([],[],[],[],[],[],[])
 with open("database_storage.pickle", "rb") as f:
     database = pickle.load(f)
 
+
 for item in ruck.clothing:
     database["clothing"].append(item)
 for item in ruck.electronics:
@@ -52,7 +53,10 @@ with open("database_storage.pickle", "wb") as f:
     pickle.dump(database, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-print(database["clothing"][1].name)
+
+
+
+print(database["clothing"][0].name)
 
 
 
