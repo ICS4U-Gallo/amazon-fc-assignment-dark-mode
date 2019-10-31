@@ -10,6 +10,9 @@ Order of operations
 3. Transfer item to packaging with all details
 """
 import sys
+import pickle
+import database
+from database import Item
 from itertools import product
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
@@ -46,13 +49,14 @@ class Widget(QWidget):
         self.gridLayout = QGridLayout()
 
         categories = QComboBox(self.rightFrame)
-        categories.addItem("Clothing")
-        categories.addItem("Electronics")
-        categories.addItem("Automotive")
-        categories.addItem("Home/Kitchen")
-        categories.addItem("Sports")
-        categories.addItem("Tools")
-        categories.addItem("Toys/Games")
+        categories.addItem("clothing")
+        categories.addItem("electronics")
+        categories.addItem("automotive")
+        categories.addItem("home_kitchen")
+        categories.addItem("sports")
+        categories.addItem("tools")
+        categories.addItem("toys_games")
+        categories.activated[str].connect(self.changing_selection)
         self.gridLayout.addWidget(categories, 0, 0)
 
         self.verticalLayout.addLayout(self.gridLayout)
@@ -85,15 +89,15 @@ class Widget(QWidget):
 
         x = (0, 1, 2)
 
-        coords = list(product(x, x))
+        self.coords = list(product(x, x))
         self.fillerword = ""
 
-        for i in coords:
-            x, y = i
-            button = QPushButton(self.fillerword, self.numpadFrame)
-            button.setFixedSize(150, 150)
-            button.setStyleSheet("background-color: white;")
-            self.gridLayout.addWidget(button, x, y)
+        
+        x, y = (0, 0)
+        self.button = QPushButton(self.fillerword, self.numpadFrame)
+        self.button.setFixedSize(150, 150)
+        self.button.setStyleSheet("background-color: white;")
+        self.gridLayout.addWidget(self.button, x, y)
         
         
         
@@ -114,16 +118,20 @@ class Widget(QWidget):
         self.horizontalLayout = QHBoxLayout(self.adminFrame)
         spacerItem = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
-        self.adminBtn = QPushButton("Admin", self.adminFrame)
+        self.adminBtn = QPushButton("Send Order", self.adminFrame)
         self.horizontalLayout.addWidget(self.adminBtn)
         self.verticalLayoutR.addWidget(self.adminFrame)
         self.principalLayout.addLayout(self.verticalLayoutR)
 
     def changing_selection(self, select):
-        with open("database_storage.pickle", "rb") as f:
-            database = pickle.load(f)
-        for i in range(1):
-            self.fillerword = database[select][i]
+        
+        for i in self.coords:
+            self.fillerword = select
+            x, y = (0, 0)
+            self.button = QPushButton(self.fillerword, self.numpadFrame)
+            self.button.setFixedSize(150, 150)
+            self.button.setStyleSheet("background-color: white;")
+            self.gridLayout.addWidget(self.button, x, y)
 
 
 
@@ -146,6 +154,8 @@ def movetopackage():
 
 #The Main Running thing so i don't have to deal with things
 if __name__ == '__main__':
+    with open("database_storage.pickle", "rb") as f:
+        database = pickle.load(f)
     app = QApplication(sys.argv)
     w = Widget()
     w.show()
