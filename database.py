@@ -26,48 +26,8 @@ for item in truck.tools:
 for item in truck.toys_game:
     database["toy_game"].append(item)
 
-    with open("database_storage.pickle", "wb") as f:
-        pickle.dump(database, f, protocol=pickle.HIGHEST_PROTOCOL)
-
+with open("database_storage.pickle", "wb") as f:
+    pickle.dump(database, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-"""
-database = {"clothing":[], "electronics":[], "automotive":[], "home_kitchen":[],
-            "sports":[], "tools":[], "toy_game":[]}
-
-item1 = Item("Tee-Shirt", "small", "clothing")
-item2 = Item("Gucci Belt", "small", "clothing")
-item3 = Item("Iphone X", "small", "electronics")
-item4 = Item("Charger", "small", "electronics")
-item5 = Item("Literal Car Engine", "large", "automotive")
-item6 = Item("Windex", "small", "automotive")
-item7 = Item("Crafting Table", "medium", "home_kitchen")
-item8 = Item("Oven", "large", "home_kitchen")
-item9 = Item("Duffel Bag", "medium", "sports")
-item10 = Item("Football", "small", "sports")
-item11 = Item("Swiss Army Knife", "small", "tools")
-item12 = Item("Power Drill", "medium", "tools")
-item13 = Item("Nintendo 64", "medium", "toy_games")
-item14 = Item("Cards", "small", "toy_games")
-
-ruck = Incoming_trucks([item1, item2], [item3, item4], [item5, item6], [item7, item8],
-             [item9, item10], [item11, item12], [item13, item14])
-
-ruck = Incoming_trucks([],[],[],[],[],[],[])
-
-"""
-
-
-
-
-
-
-
-
-
