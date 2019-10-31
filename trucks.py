@@ -1,3 +1,6 @@
+import packaging_section
+
+
 class Incoming_trucks:
     """Incoming trucks class
 
@@ -41,3 +44,7 @@ class Outgoing_trucks:
         self.short_distance = short_distance
         self.med_distance = med_distance
         self.long_distance = long_distance
+
+    def send_to_user():
+        packaging_section.Package.output_info_to_trucks()
+        print(user_distance + " " + output_to_trucks)
