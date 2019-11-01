@@ -23,14 +23,15 @@ class Incoming_List:
             toys_games: An toys_games dict
         """
 
-        clothing = self.clothing
-        electronics = self.electronics
-        automotive = self.automotive
-        home_kitchen = self.home_kitchen
-        sports = self.sports
-        tools = self.tools
-        toys_games = self.toys_games
-        List = {"clothing": self.clothing, 
+        self.clothing = clothing
+        self.electronics = electronics
+        self.automotive = automotive
+        self.home_kitchen = home_kitchen
+        self.sports = sports
+        self.tools = tools
+        self.toys_games = toys_games
+        List = {
+                "clothing": self.clothing, 
                 "electronics": self.electronics, 
                 "automotive": self.automotive, 
                 "home_kitchen": self.home_kitchen, 
@@ -38,25 +39,24 @@ class Incoming_List:
                 "tools": self.tools, 
                 "toys_games": self.toys_games, 
                 }
-    def clothing():
+    def get_clothing():
         return List["clothing"]
     
-    def electronics():
+    def get_electronics():
         return List["electronics"]
     
-    def automotive():
+    def get_automotive():
         return List["automotive"]  
     
-    def home_kitchen():
+    def get_home_kitchen():
         return List["home_kitchen"]
     
-    def sports():
+    def get_sports():
         return List["sports"]
     
-    def tools():
+    def get_tools():
         return List["tools"]
     
-    def toys_games():
+    def get_toys_games():
         return List["toys_games"]
-
 
