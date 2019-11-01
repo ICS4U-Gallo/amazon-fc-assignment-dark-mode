@@ -2,11 +2,13 @@ import json
 import pickle
 from trucks import *
 
+
 class Item:
   def __init__(self, name, size, item_type):
     self.name = name
     self.size = size
     self.item_type = item_type
+
 
 with open("database_storage.pickle", "rb") as f:
     database = pickle.load(f)

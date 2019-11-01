@@ -1,6 +1,9 @@
+import pickle
+
+
 """Import data from database_storage.pickle"""
-with open("database_storage.pickle", "rb") as f:
-    database = pickle.load(f)
+#with open("database_storage.pickle", "rb") as f:
+#   database = pickle.load(f)
 
 
 class Package:
@@ -23,11 +26,11 @@ class Package:
         self.size = size
         self.address = address
 
-    for i in database[item_type]:
-        if database[i].name == user_item:
-            index = i
+#    for i in database[item_type]:
+#        if database[i].name == user_item:
+#            index = i
 
-    item_size = database[index].size
+#    item_size = database[index].size
 
     def ouptut_info_to_trucks():       
         output_to_trucks = "Sending, {} package with {} to {}".format(item_size, index, address)

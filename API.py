@@ -11,8 +11,7 @@ Order of operations
 """
 import sys
 import pickle
-import database
-from database import Item
+from temporary_database_reset import Item
 from itertools import product
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
@@ -90,14 +89,9 @@ class Widget(QWidget):
         x = (0, 1, 2)
 
         self.coords = list(product(x, x))
-        self.fillerword = ""
 
         
-        x, y = (0, 0)
-        self.button = QPushButton(self.fillerword, self.numpadFrame)
-        self.button.setFixedSize(150, 150)
-        self.button.setStyleSheet("background-color: white;")
-        self.gridLayout.addWidget(self.button, x, y)
+
         
         
         
@@ -124,15 +118,18 @@ class Widget(QWidget):
         self.principalLayout.addLayout(self.verticalLayoutR)
 
     def changing_selection(self, select):
-        
-        for i in self.coords:
-            self.fillerword = select
-            x, y = (0, 0)
-            self.button = QPushButton(self.fillerword, self.numpadFrame)
-            self.button.setFixedSize(150, 150)
-            self.button.setStyleSheet("background-color: white;")
-            self.gridLayout.addWidget(self.button, x, y)
-
+        with open("database_storage.pickle", "rb") as f:
+            database = pickle.load(f)
+        for data in database[select]:
+            for i in self.coords:
+                x, y = i
+                fillerword = data.name
+                print(data.name)
+                button = QPushButton(self.numpadFrame)
+                button.setFixedSize(60, 60)
+                button.setText()
+                button.setStyleSheet("background-color: white;")
+                self.gridLayout.addWidget(button, x, y)
 
 
     def exit_time(self):
@@ -154,8 +151,6 @@ def movetopackage():
 
 #The Main Running thing so i don't have to deal with things
 if __name__ == '__main__':
-    with open("database_storage.pickle", "rb") as f:
-        database = pickle.load(f)
     app = QApplication(sys.argv)
     w = Widget()
     w.show()
