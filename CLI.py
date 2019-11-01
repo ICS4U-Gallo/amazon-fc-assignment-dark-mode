@@ -8,7 +8,7 @@ with open("database_storage.pickle", "rb") as f:
 def item_selection(select):
     print("These are the items that are available:")
     for items in database[select]:
-        print(f'--->{items.name}')
+        print('--->{}'.format(items.name))
     print("Which one would you like to purchase?")
     while True:
         try:
@@ -25,6 +25,9 @@ def item_selection(select):
 
 
 def send_to_package(item):
+    print('Please enter the information required')
+    name = input('Name: ')
+    address = input('Address: ')
     pass
 
 

@@ -127,7 +127,7 @@ class Widget(QWidget):
                 print(data.name)
                 button = QPushButton(self.numpadFrame)
                 button.setFixedSize(60, 60)
-                button.setText()
+                button.setText(fillerword)
                 button.setStyleSheet("background-color: white;")
                 self.gridLayout.addWidget(button, x, y)
 
